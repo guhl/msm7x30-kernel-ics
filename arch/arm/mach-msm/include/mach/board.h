@@ -441,11 +441,11 @@ struct shared_ramfs_table {
 int __init rmt_storage_add_ramfs(void);
 #endif
 
-#if defined(CONFIG_USB_FUNCTION_MSM_HSUSB) || defined(CONFIG_USB_MSM_72K)
 #define SHIP_BUILD	0
 #define MFG_BUILD	1
 #define ENG_BUILD	2
 
+//#if defined(CONFIG_USB_FUNCTION_MSM_HSUSB) || defined(CONFIG_USB_MSM_72K)
 void msm_hsusb_set_vbus_state(int online);
 enum usb_connect_type {
 	CONNECT_TYPE_UNKNOWN = -1,
@@ -486,9 +486,9 @@ struct t_mhl_status_notifier{
 int mhl_detect_register_notifier(struct t_mhl_status_notifier *);
 static LIST_HEAD(g_lh_mhl_detect_notifier_list);
 /* END: add USB connected notify function */
-#else
-static inline void msm_hsusb_set_vbus_state(int online) {}
-#endif
+//#else
+//static inline void msm_hsusb_set_vbus_state(int online) {}
+//#endif
 
 int __init parse_tag_skuid(const struct tag *tags);
 int __init parse_tag_engineerid(const struct tag *tags);

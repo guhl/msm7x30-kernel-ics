@@ -40,7 +40,7 @@
 #include <mach/msm_hsusb_hw.h>
 #include <linux/msm_rotator.h>
 #ifdef CONFIG_USB_FUNCTION
-#include <linux/usb/mass_storage_function.h>
+//#include <linux/usb/mass_storage_function.h>
 #endif
 #ifdef CONFIG_PMIC8058
 #include <linux/mfd/pmic8058.h>

@@ -18,7 +18,7 @@
 void msm_hsusb_8x50_phy_reset(void);
 #endif
 
-#ifdef CONFIG_USB_ANDROID
+#ifdef CONFIG_USB_G_ANDROID
 #ifdef ERROR
 #undef ERROR
 #endif
@@ -42,12 +42,12 @@ static char *usb_functions_rndis_adb[] = {
 	"adb",
 };
 
-#ifdef CONFIG_USB_ANDROID_ACCESSORY
+#ifdef CONFIG_USB_G_ANDROID_ACCESSORY
 static char *usb_functions_accessory[] = { "accessory" };
 static char *usb_functions_accessory_adb[] = { "accessory", "adb" };
 #endif
 
-#ifdef CONFIG_USB_ANDROID_MTP
+#ifdef CONFIG_USB_G_ANDROID_MTP
 static char *usb_functions_mtp[] = {
 	"mtp",
 };
@@ -58,7 +58,7 @@ static char *usb_functions_mtp_adb[] = {
 };
 #endif
 
-#if defined(CONFIG_USB_ANDROID_DIAG) || defined(CONFIG_USB_ANDROID_QCT_DIAG)
+#if defined(CONFIG_USB_G_ANDROID_DIAG) || defined(CONFIG_USB_G_ANDROID_QCT_DIAG)
 static char *usb_functions_diag[] = {
 	"usb_mass_storage",
 	"diag",
@@ -71,18 +71,18 @@ static char *usb_functions_adb_diag[] = {
 #endif
 
 static char *usb_functions_all[] = {
-#ifdef CONFIG_USB_ANDROID_RNDIS
+#ifdef CONFIG_USB_G_ANDROID_RNDIS
 	"rndis",
 #endif
-#ifdef CONFIG_USB_ANDROID_ACCESSORY
+#ifdef CONFIG_USB_G_ANDROID_ACCESSORY
 	"accessory",
 #endif
 	"usb_mass_storage",
 	"adb",
-#ifdef CONFIG_USB_ANDROID_ACM
+#ifdef CONFIG_USB_G_ANDROID_ACM
 	"acm",
 #endif
-#if defined(CONFIG_USB_ANDROID_DIAG) || defined(CONFIG_USB_ANDROID_QCT_DIAG)
+#if defined(CONFIG_USB_G_ANDROID_DIAG) || defined(CONFIG_USB_G_ANDROID_QCT_DIAG)
 	"diag",
 #endif
 };
@@ -108,7 +108,7 @@ static struct android_usb_product usb_products[] = {
 		.num_functions	= ARRAY_SIZE(usb_functions_rndis_adb),
 		.functions	= usb_functions_rndis_adb,
 	},
-#ifdef CONFIG_USB_ANDROID_ACCESSORY
+#ifdef CONFIG_USB_G_ANDROID_ACCESSORY
 	{
 		.vendor_id      = USB_ACCESSORY_VENDOR_ID,
 		.product_id     = USB_ACCESSORY_PRODUCT_ID,
@@ -122,7 +122,7 @@ static struct android_usb_product usb_products[] = {
 		.functions      = usb_functions_accessory_adb,
 	},
 #endif
-#if defined(CONFIG_USB_ANDROID_DIAG) || defined(CONFIG_USB_ANDROID_QCT_DIAG)
+#if defined(CONFIG_USB_G_ANDROID_DIAG) || defined(CONFIG_USB_G_ANDROID_QCT_DIAG)
 	{
 		.product_id	= 0x0c07,
 		.num_functions	= ARRAY_SIZE(usb_functions_adb_diag),
@@ -134,7 +134,7 @@ static struct android_usb_product usb_products[] = {
 		.functions	= usb_functions_diag,
 	},
 #endif
-#ifdef CONFIG_USB_ANDROID_ACM
+#ifdef CONFIG_USB_G_ANDROID_ACM
 	{
 		.product_id	= 0x0ff4,
 		.num_functions	= ARRAY_SIZE(usb_functions_acm),

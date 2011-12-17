@@ -122,7 +122,7 @@ void config_vision_usb_id_gpios(bool output)
 		config_gpio_table(usb_ID_PIN_input_table,
 			ARRAY_SIZE(usb_ID_PIN_input_table));
 }
-#ifdef CONFIG_USB_ANDROID
+#ifdef CONFIG_USB_G_ANDROID
 static int phy_init_seq[] = { 0x06, 0x36, 0x0C, 0x31, 0x31, 0x32, 0x1, 0x0D, 0x1, 0x10, -1 };
 
 static struct msm_hsusb_platform_data msm_hsusb_pdata = {
@@ -147,7 +147,7 @@ static struct platform_device usb_mass_storage_device = {
 	},
 };
 
-#ifdef CONFIG_USB_ANDROID_RNDIS
+#ifdef CONFIG_USB_G_ANDROID_RNDIS
 static struct usb_ether_platform_data rndis_pdata = {
 	/* ethaddr is filled by board_serialno_setup */
 	.vendorID       = 0x18d1,
@@ -192,7 +192,7 @@ void vision_add_usb_devices(void)
 	msm_device_hsusb.dev.platform_data = &msm_hsusb_pdata;
 	config_vision_usb_id_gpios(0);
 	platform_device_register(&msm_device_hsusb);
-#ifdef CONFIG_USB_ANDROID_RNDIS
+#ifdef CONFIG_USB_G_ANDROID_RNDIS
 	platform_device_register(&rndis_device);
 #endif
 	platform_device_register(&usb_mass_storage_device);
@@ -2701,7 +2701,7 @@ static void __init vision_init(void)
 	platform_add_devices(devices, ARRAY_SIZE(devices));
 	vision_init_panel();
 
-#ifdef CONFIG_USB_ANDROID
+#ifdef CONFIG_USB_G_ANDROID
 	vision_add_usb_devices();
 #endif
 	if (board_emmc_boot()) {
