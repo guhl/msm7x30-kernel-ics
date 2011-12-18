@@ -86,11 +86,11 @@ struct mtp_dev {
 	atomic_t ioctl_excl;
 
 	struct list_head tx_idle;
-        struct list_head intr_idle;
+	struct list_head intr_idle;
 
 	wait_queue_head_t read_wq;
 	wait_queue_head_t write_wq;
-        wait_queue_head_t intr_wq;
+	wait_queue_head_t intr_wq;
 	struct usb_request *rx_req[RX_REQ_MAX];
 	int rx_done;
 
@@ -644,7 +644,7 @@ static void send_file_work(struct work_struct *data) {
 	smp_rmb();
 	filp = dev->xfer_file;
 	offset = dev->xfer_file_offset;
-        count = dev->xfer_file_length;
+	count = dev->xfer_file_length;
 
 	DBG(cdev, "send_file_work(%lld %lld)\n", offset, count);
 
@@ -866,7 +866,8 @@ static long mtp_ioctl(struct file *fp, unsigned code, unsigned long value)
 		}
 		if (dev->state == STATE_OFFLINE) {
 			spin_unlock_irq(&dev->lock);
-			return -ENODEV;
+			ret = -ENODEV;
+			goto out;
 		}
 		dev->state = STATE_BUSY;
 		spin_unlock_irq(&dev->lock);
@@ -936,7 +937,6 @@ fail:
 		dev->state = STATE_READY;
 	spin_unlock_irq(&dev->lock);
 out:
-//	_unlock(&dev->ioctl_excl);
 	mtp_unlock(&dev->ioctl_excl);
 	DBG(dev->cdev, "ioctl returning %d\n", ret);
 	return ret;
